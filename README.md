@@ -8,13 +8,13 @@ about microservices architecture by practice.
 
 ## Project consists of
 
-- [Workaly Auth Service](https://github.com/Dexter2038/workaly/auth-service)
-- [Workaly User Service](https://github.com/Dexter2038/workaly/user-service)
-- [Workaly Task Service](https://github.com/Dexter2038/workaly/task-service)
-- [Workaly Job Service](https://github.com/Dexter2038/workaly/job-service)
-- [Workaly Notification Service](https://github.com/Dexter2038/workaly/notification-service)
-- [Workaly Chat Service](https://github.com/Dexter2038/workaly/chat-service)
-- [Workaly Payment Service](https://github.com/Dexter2038/workaly/payment-service)
+- [Workaly Auth Service](https://github.com/Dexter2038/workaly/tree/main/auth-service)
+- [Workaly User Service](https://github.com/Dexter2038/workaly/tree/main/user-service)
+- [Workaly Task Service](https://github.com/Dexter2038/workaly/tree/main/task-service)
+- [Workaly Job Service](https://github.com/Dexter2038/workaly/tree/main/job-service)
+- [Workaly Notification Service](https://github.com/Dexter2038/workaly/tree/main/notification-service)
+- [Workaly Chat Service](https://github.com/Dexter2038/workaly/tree/main/chat-service)
+- [Workaly Payment Service](https://github.com/Dexter2038/workaly/tree/main/payment-service)
 - [Workaly Gateway Service](https://github.com/Dexter2038/workaly/gateway)
 - [Workaly Frontend](https://github.com/Dexter2038/workaly/frontend)
 
