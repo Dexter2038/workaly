@@ -15,14 +15,14 @@ import (
 )
 
 type loginUser struct {
-	Username string
-	Password string
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 type registerUser struct {
-	Name     string
-	Username string
-	Password string
+	Name     string `json:"name" binding:"required"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 func register(c *gin.Context) {
