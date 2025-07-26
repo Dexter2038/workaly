@@ -66,7 +66,14 @@ func register(c *gin.Context) {
 
 	secure := true
 	httpOnly := true
-	c.SetCookie("token", token.Raw, 3600, "/", "", secure, httpOnly)
+	tokenStr, err := token.SignedString([]byte(""))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.SetCookie("token", tokenStr, 3600, "/", "", secure, httpOnly)
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
@@ -110,10 +117,17 @@ func login(c *gin.Context) {
 		"iat":      now.Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenStr, err := token.SignedString([]byte(""))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 
 	secure := true
 	httpOnly := true
-	c.SetCookie("token", token.Raw, 3600, "/", "", secure, httpOnly)
+	c.SetCookie("token", tokenStr, 3600, "/", "", secure, httpOnly)
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
