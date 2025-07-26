@@ -1,6 +1,6 @@
 use argon2::{
     Argon2,
-    password_hash::{PasswordHash, PasswordVerifier},
+    password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString, rand_core::OsRng},
 };
 use std::sync::Arc;
 
@@ -64,11 +64,18 @@ impl UserService for MyUserService {
         let req = request.into_inner();
         let pg = self.pg.clone();
 
+        let argon2 = Argon2::default();
+        let salt = SaltString::generate(OsRng);
+
+        let password_hash = argon2
+            .hash_password(req.password.as_bytes(), &salt)
+            .map_err(|_| ServiceError::InvalidPassword)?;
+
         let result = sqlx::query!(
             "INSERT INTO users (name, username, password) VALUES ($1, $2, $3)",
             req.name,
             req.username,
-            req.password
+            password_hash.to_string()
         )
         .execute(&*pg)
         .await
